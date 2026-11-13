@@ -37,7 +37,7 @@ semester 4, marks 85. The application prints configuration (excluding API_KEY)
 followed by a student report showing grade A.
 
 The checklist supplies example grades but omits exact cutoffs. This implementation
-uses A >= 80, B >= 70, C >= 60, D >= 50, F < 50. Student status will use a passing
+uses A >= 80, B >= 70, C >= 60, D >= 50, F < 50. Student status uses a passing
 threshold of 50. Subject marks are equally weighted and must each be finite numbers
 between 0 and 100 inclusive. Their arithmetic mean is the student's overall mark.
 
@@ -58,9 +58,9 @@ with optional spaces, apostrophes, or hyphens. Lists must respect MAX_STUDENTS.
 
 `.env.example` documents APP_NAME, DEBUG, MAX_STUDENTS, and API_KEY. Existing process
 environment variables take priority over `.env`. DEBUG accepts True/False or 1/0;
-The setup command sets DEBUG for the current shell because this workstation has
-a pre-existing `DEBUG=release`, which is not a boolean application setting.
-MAX_STUDENTS must be positive. API_KEY is loaded but never printed or used: this
+MAX_STUDENTS must be positive. The setup command sets DEBUG for the current shell
+because this workstation has a pre-existing `DEBUG=release`, which is not a boolean
+application setting. API_KEY is loaded but never printed or used: this
 assignment needs no API service or real credential. The local value is blank.
 
 Startup, successful report events, and errors are written to stderr and
@@ -91,6 +91,12 @@ record invariants; validation checks values; services calculate results; reports
 format output; logger and config own their respective setup. Tests cover required
 grades, boundaries, invalid input, configuration, JSON errors, limits, and secret
 redaction. See `examples/README.md` for the staged refactoring exercises.
+
+Run `python verify_assignment.py` to repeat the lab demonstrations and save their
+output to `docs/verification.txt`. This intentionally changes the A cutoff to 800,
+observes the required failing grade test, restores the original calculator in a
+finally block, and reruns passing tests. Run it while no other process is using or
+editing the calculator. The normal test suite never changes application source.
 
 ## GitHub handoff
 

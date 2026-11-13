@@ -1,0 +1,186 @@
+$ python examples/stage01/main.py
+Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage02/main.py
+Student name: Marks (0-100): Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage03/main.py
+Student name: Marks (0-100): Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage04/main.py
+Student name: Marks (0-100): Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage05/main.py
+Student name: Marks (0-100): Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage06/main.py
+Student name: Marks (0-100): Name: Ali
+Marks: 85
+Grade: A
+Exit code: 0
+
+$ python examples/stage07/main.py
+Student name: Marks (0-100): Student Report
+--------------
+ID: 2024001
+Name: Ali
+Program: BS Computer Science
+Semester: 4
+Marks: 85/100
+Grade: A
+Exit code: 0
+
+$ python examples/stage08/main.py
+Student name: Marks (0-100): Student Report
+--------------
+ID: 2024001
+Name: Ali
+Program: BS Computer Science
+Semester: 4
+Marks: 85/100
+Grade: A
+Exit code: 0
+
+$ python examples/stage02/main.py
+Student name: Marks (0-100): Traceback (most recent call last):
+  File "C:\agenticAi\week01\student_project\examples\stage02\main.py", line 4, in <module>
+    marks = float(input("Marks (0-100): "))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'not-a-number'
+Exit code: 1
+
+$ python -m student_app
+Student Information System
+Debug: True
+Maximum students: 100
+
+Student Report
+--------------
+ID: 2024001
+Name: Ali
+Program: BS Computer Science
+Semester: 4
+Marks: 85/100
+Grade: A
+Status: Pass
+2026-11-13 19:16:12,470 INFO Application started
+2026-11-13 19:16:12,470 INFO Generated 1 student report(s)
+Exit code: 0
+
+$ python -m student_app --name Sara Khan --marks 80 90 100
+Student Information System
+Debug: True
+Maximum students: 100
+
+Student Report
+--------------
+ID: 2024001
+Name: Sara Khan
+Program: BS Computer Science
+Semester: 4
+Marks: 90/100
+Grade: A
+Status: Pass
+2026-11-13 19:16:12,602 INFO Application started
+2026-11-13 19:16:12,603 INFO Generated 1 student report(s)
+Exit code: 0
+
+$ python -m student_app --marks 40
+Student Information System
+Debug: True
+Maximum students: 100
+
+Student Report
+--------------
+ID: 2024001
+Name: Ali
+Program: BS Computer Science
+Semester: 4
+Marks: 40/100
+Grade: F
+Status: Fail
+2026-11-13 19:16:12,732 INFO Application started
+2026-11-13 19:16:12,732 INFO Generated 1 student report(s)
+Exit code: 0
+
+$ python -m student_app --marks -1
+2026-11-13 19:16:12,869 INFO Application started
+2026-11-13 19:16:12,870 ERROR Application could not complete (ValueError)
+Error: check configuration, student data and input values. See README.md.
+Exit code: 1
+
+$ python -m student_app --name 
+2026-11-13 19:16:13,019 INFO Application started
+2026-11-13 19:16:13,019 ERROR Application could not complete (ValueError)
+Error: check configuration, student data and input values. See README.md.
+Exit code: 1
+
+$ python -m student_app --data data/missing.json
+2026-11-13 19:16:13,172 INFO Application started
+2026-11-13 19:16:13,172 ERROR Application could not complete (FileNotFoundError)
+Error: check configuration, student data and input values. See README.md.
+Exit code: 1
+
+$ python -m student_app
+Student Information System
+Debug: True
+Maximum students: 100
+
+Student Report
+--------------
+ID: 2024001
+Name: Ali
+Program: BS Computer Science
+Semester: 4
+Marks: 85/100
+Grade: A
+Status: Pass
+2026-11-13 19:16:13,331 INFO Application started
+2026-11-13 19:16:13,331 INFO Generated 1 student report(s)
+Exit code: 0
+
+$ python -m pytest -q tests/test_calculator.py::test_required_grades
+F....                                                                    [100%]
+================================== FAILURES ===================================
+_________________________ test_required_grades[85-A] __________________________
+
+marks = 85, grade = 'A'
+
+    @pytest.mark.parametrize("marks, grade", [(85, "A"), (75, "B"), (65, "C"), (55, "D"), (40, "F")])
+    def test_required_grades(marks, grade):
+>       assert calculate_grade(marks) == grade
+E       AssertionError: assert 'B' == 'A'
+E         
+E         - A
+E         + B
+
+tests\test_calculator.py:8: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_calculator.py::test_required_grades[85-A] - AssertionError:...
+1 failed, 4 passed in 0.08s
+Exit code: 1
+
+$ python -m pytest -q tests/test_calculator.py::test_required_grades
+.....                                                                    [100%]
+5 passed in 0.03s
+Exit code: 0
+
+$ python -m pytest -q
+..................................................................       [100%]
+66 passed in 0.23s
+Exit code: 0
