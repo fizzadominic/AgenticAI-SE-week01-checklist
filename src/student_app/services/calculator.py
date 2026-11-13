@@ -18,3 +18,8 @@ def calculate_marks(subject_marks: Iterable[float]) -> float:
     if not values:
         raise ValueError("At least one subject mark is required.")
     return sum(values) / len(values)
+
+
+def calculate_status(marks: float) -> str:
+    """A student passes when their validated overall mark is at least 50."""
+    return "Pass" if validate_marks(marks) >= 50 else "Fail"
