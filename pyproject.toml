@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "student-app"
+version = "1.0.0"
+description = "Week 01 student information system"
+requires-python = ">=3.10"
+dependencies = ["python-dotenv>=1.0,<2", "requests>=2.32,<3"]
+
+[project.scripts]
+student-app = "student_app.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "--basetemp=.pytest_tmp"
