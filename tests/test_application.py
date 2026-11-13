@@ -22,7 +22,15 @@ def test_successful_report(student_file, capsys):
     assert "Name: Sara" in output
     assert "Marks: 85/100" in output
     assert "Grade: A" in output
+    assert "Status: Pass" in output
     assert "Maximum students:" in output
+
+
+def test_failing_student_status(student_file, capsys):
+    assert main(["--data", str(student_file), "--marks", "40"]) == 0
+    output = capsys.readouterr().out
+    assert "Grade: F" in output
+    assert "Status: Fail" in output
 
 
 @pytest.mark.parametrize("kind", ["missing", "malformed", "invalid_marks", "wrong_schema", "empty", "duplicate"])
