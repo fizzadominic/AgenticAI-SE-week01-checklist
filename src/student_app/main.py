@@ -9,7 +9,7 @@ from student_app.config import PROJECT_ROOT, load_settings
 from student_app.logger import configure_logging
 from student_app.models.student import Student
 from student_app.reports.student_report import generate_report
-from student_app.services.calculator import calculate_marks
+from student_app.services.calculator import calculate_marks, calculate_status
 from student_app.storage import load_students
 from student_app.utils.validation import validate_name
 
@@ -39,6 +39,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{settings.app_name}\nDebug: {settings.debug}\nMaximum students: {settings.max_students}\n")
         for student in students:
             print(generate_report(student))
+            print(f"Status: {calculate_status(student.marks)}")
         logger.info("Generated %d student report(s)", len(students))
         return 0
     except (ValueError, OSError) as error:
